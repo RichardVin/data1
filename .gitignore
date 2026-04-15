@@ -1,0 +1,20 @@
+# Data (très important)
+data/
+*.parquet
+
+*.csv
+*.xlsx
+
+# Python
+__pycache__/
+*.pyc
+
+# Environnement
+.venv/
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
