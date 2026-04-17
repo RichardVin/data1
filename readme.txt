@@ -56,3 +56,38 @@ Bronze → Silver → Gold
 ```bash
 pip install -r requirements.txt
 streamlit run app/app.py
+
+
+_______________________________________________________________________________________
+
+# Nettoyage Silver (DVF)
+
+1. Sélection des colonnes utiles
+
+2. Filtrage de base :
+   - Valeur foncière non nulle et > 0
+   - Surface réelle bâtie non nulle et > 0
+
+3. Filtrage métier :
+   - Conservation uniquement des biens résidentiels :
+     (Maison, Appartement)
+
+4. Création du KPI :
+   - prix_m2 = Valeur fonciere / Surface reelle bati
+
+5. Suppression des doublons :
+   - Suppression des doublons exacts
+   - Déduplication métier sur :
+     (Date, Valeur, Code postal, Commune, Voie, Type local, Code voie)
+   - Conservation de la ligne la plus pertinente (plus grande surface)
+
+6. Contrôles qualité (flags) :
+   - Valeur foncière ≤ 2 000 000 €
+   - Surface bâtie ≤ 300 m²
+   - 500 € ≤ prix_m2 ≤ 20 000 €
+   - Exclusion des lots multiples sans surface Carrez
+
+7. Filtrage final :
+   - Conservation uniquement des lignes avec flag_ok = 1
+
+→ Résultat : dataset propre, cohérent et prêt pour analyse (Gold)
